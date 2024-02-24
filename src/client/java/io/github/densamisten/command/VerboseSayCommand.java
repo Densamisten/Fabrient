@@ -1,7 +1,6 @@
 package io.github.densamisten.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.util.Clipboard;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -14,14 +13,14 @@ public class VerboseSayCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("vsay")
-                .executes(context -> sendVerboseMessage(context.getSource())));
+                .executes(ctx -> sendVerboseMessage(ctx.getSource())));
     }
 
     private static int sendVerboseMessage(ServerCommandSource source) {
         // Get the clipboard contents
         String clipboardContents = clipboardManager.getClipboard(GLFW.glfwGetCurrentContext(), GLFWErrorCallback.createPrint(System.err));
         // Perform send message action
-        source.sendFeedback(Text.of(clipboardContents), false);
+        source.sendMessage(Text.of(clipboardContents));
         // Return 1 for success
         return 1;
     }

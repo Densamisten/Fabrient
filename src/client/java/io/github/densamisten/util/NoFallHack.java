@@ -20,7 +20,7 @@ public final class NoFallHack
 				&& !isFallingFastEnoughToCauseDamage(player))
 			return;
 
-		player.networkHandler.sendPacket(new OnGroundOnly(true));
+		player.networkHandler.method_2883(new OnGroundOnly(true));
 	}
 
 	private boolean isFallingFastEnoughToCauseDamage(ClientPlayerEntity player)

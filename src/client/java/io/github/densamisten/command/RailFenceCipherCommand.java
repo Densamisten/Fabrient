@@ -17,7 +17,7 @@ public class RailFenceCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     int rails = context.getArgument("rails", Integer.class);
                                                     String encryptedText = encrypt(inputText, rails);
-                                                    context.getSource().sendFeedback(Text.of("Encrypted text: " + encryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Encrypted text: " + encryptedText));
                                                     return 1;
                                                 })
                                         )
@@ -30,7 +30,7 @@ public class RailFenceCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     int rails = context.getArgument("rails", Integer.class);
                                                     String decryptedText = decrypt(inputText, rails);
-                                                    context.getSource().sendFeedback(Text.of("Decrypted text: " + decryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Decrypted text: " + decryptedText));
                                                     return 1;
                                                 })
                                         )

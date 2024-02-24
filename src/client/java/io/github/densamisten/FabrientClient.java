@@ -9,7 +9,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -77,11 +76,11 @@ public class FabrientClient implements ClientModInitializer {
 		FabrientRegistries.registerFabrientStuff();
 		ClientTickEvents.START_CLIENT_TICK.register(client -> {
 
-			PlayerEntity player = MinecraftClient.getInstance().player;
+			ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
 			if (JETPACK_KEY.wasPressed()) {
 				jetPackState = jetPackState == ON ? NEUTRALJP : ON;
-				if(sentjet!=true) {
+				if(!sentjet) {
 					if(player != null) {
 						player.sendMessage(Text.of("[JetPack ON]"));
 						sentjet=true;
@@ -94,7 +93,7 @@ public class FabrientClient implements ClientModInitializer {
 			}
 			if (boatKey.wasPressed()) {
 				boatState = boatState == ONB ? NEUTRALB : ONB;
-				if(sentboat!=true) {
+				if(!sentboat) {
 					if(player != null) {
 						player.sendMessage(Text.of("[BoatFly ON]"));
 						sentboat=true;
@@ -106,7 +105,7 @@ public class FabrientClient implements ClientModInitializer {
 			}
 			if (flyKey.wasPressed()) {
 				flyingState = flyingState == FLYING ? NEUTRAL : FLYING;
-				if(sentfly!=true) {
+				if(!sentfly) {
 					if(player != null) {
 						player.sendMessage(Text.of("[CreativeFly ON]"));
 						sentfly=true;
@@ -118,7 +117,7 @@ public class FabrientClient implements ClientModInitializer {
 			}
 			if (fallKey.wasPressed()) {
 				fallState = fallState == NOF ? NEU : NOF;
-				if(sentfall!=true) {
+				if(!sentfall) {
 					if(player != null) {
 						player.sendMessage(Text.of("[NoFall ON]"));
 						sentfall=true;
@@ -130,7 +129,7 @@ public class FabrientClient implements ClientModInitializer {
 			}
 			if (gliderKey.wasPressed()) {
 				glidingState = glidingState == ONG ? NEUTRALG : ONG;
-				if(sentglide!=true) {
+				if(!sentglide) {
 					if(player != null) {
 						player.sendMessage(Text.of("[Glider ON]"));
 						sentglide=true;
@@ -144,7 +143,7 @@ public class FabrientClient implements ClientModInitializer {
 				senthelp = false;
 			}
 			if(player != null) {
-				if(senthelp!=true) {
+				if(!senthelp) {
 					player.sendMessage((Text.of(" ")));
 					player.sendMessage(Text.of("-----------------------HELP-----------------------"));
 					player.sendMessage(Text.of("JetPack:J, Glider:G, BoatFly:B, CreativeFly:K, NoFallDamage:N"));
@@ -161,16 +160,12 @@ public class FabrientClient implements ClientModInitializer {
 				}
 				if(fallState == NOF) {
 					NoFallHack noFallHack = new NoFallHack();
-					noFallHack.cancelFallDamage((ClientPlayerEntity) player);
+					noFallHack.cancelFallDamage(player);
 				}
 				if(glidingState == ONG) {
 					GliderHack.updateGlider();
 				}
-				if (flyingState == FLYING) {
-					player.getAbilities().flying = true;
-				} else {
-					player.getAbilities().flying = false;
-				}
+                player.getAbilities().flying = flyingState == FLYING;
 			}
 		});
 	}

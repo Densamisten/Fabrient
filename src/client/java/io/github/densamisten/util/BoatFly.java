@@ -42,15 +42,15 @@ public class BoatFly {
     }
     static PlayerEntity player = MinecraftClient.getInstance().player;
     public void setUpwardSpeed ( double upwardSpeed){
-        this.upwardSpeed = upwardSpeed;
+        BoatFly.upwardSpeed = upwardSpeed;
     }
 
     public void setForwardSpeed ( double forwardSpeed){
-        this.forwardSpeed = forwardSpeed;
+        BoatFly.forwardSpeed = forwardSpeed;
     }
 
     public void setChangeForwardSpeed ( boolean changeForwardSpeed){
-        this.changeForwardSpeed = changeForwardSpeed;
+        BoatFly.changeForwardSpeed = changeForwardSpeed;
     }
 
 

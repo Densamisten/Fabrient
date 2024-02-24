@@ -1,6 +1,5 @@
 package io.github;
 
-import com.ibm.icu.text.RawCollationKey;
 import io.github.densamisten.command.*;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 

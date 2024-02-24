@@ -1,7 +1,6 @@
 package io.github.densamisten.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -16,7 +15,7 @@ public class AtbashCipherCommand {
                                         .executes(context -> {
                                             String inputText = context.getArgument("text", String.class);
                                             String encryptedText = encrypt(inputText);
-                                            context.getSource().sendFeedback(Text.of("Encrypted text: " + encryptedText), false);
+                                            context.getSource().sendMessage(Text.of("Encrypted text: " + encryptedText));
                                             return 1;
                                         })
                                 )
@@ -26,7 +25,7 @@ public class AtbashCipherCommand {
                                         .executes(context -> {
                                             String inputText = context.getArgument("text", String.class);
                                             String decryptedText = decrypt(inputText);
-                                            context.getSource().sendFeedback(Text.of("Decrypted text: " + decryptedText), false);
+                                            context.getSource().sendMessage(Text.of("Decrypted text: " + decryptedText));
                                             return 1;
                                         })
                                 )

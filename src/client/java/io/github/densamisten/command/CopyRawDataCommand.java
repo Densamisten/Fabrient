@@ -3,13 +3,11 @@ package io.github.densamisten.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.client.util.Clipboard;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWErrorCallback;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,12 +25,12 @@ public class CopyRawDataCommand {
         );
     }
 
-    private static int copyRawData(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+    private static int copyRawData(CommandContext<ServerCommandSource> context) {
         String filePath = context.getArgument("file", String.class);
         try {
             byte[] rawData = Files.readAllBytes(Path.of(filePath));
             clipboardManager.setClipboard(GLFW.glfwGetCurrentContext(), bytesToHexString(rawData));
-            context.getSource().sendFeedback(Text.of("Raw data copied to clipboard."), false);
+            context.getSource().sendMessage(Text.of("Raw data copied to clipboard."));
         } catch (IOException e) {
             context.getSource().sendError(Text.of("Failed to read file: " + e.getMessage()));
         }

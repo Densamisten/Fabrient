@@ -1,6 +1,5 @@
 package io.github.densamisten.util;
 
-import com.mojang.authlib.exceptions.MinecraftClientException;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.Vec3d;

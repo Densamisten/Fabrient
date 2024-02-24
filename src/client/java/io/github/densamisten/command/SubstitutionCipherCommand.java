@@ -17,7 +17,7 @@ public class SubstitutionCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     String key = context.getArgument("key", String.class);
                                                     String encryptedText = encrypt(inputText, key);
-                                                    context.getSource().sendFeedback(Text.of("Encrypted text: " + encryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Encrypted text: " + encryptedText));
                                                     return 1;
                                                 })
                                         )
@@ -30,7 +30,7 @@ public class SubstitutionCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     String key = context.getArgument("key", String.class);
                                                     String decryptedText = decrypt(inputText, key);
-                                                    context.getSource().sendFeedback(Text.of("Decrypted text: " + decryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Decrypted text: " + decryptedText));
                                                     return 1;
                                                 })
                                         )

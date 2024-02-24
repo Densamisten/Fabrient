@@ -1,9 +1,8 @@
 package io.github.densamisten.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -19,7 +18,7 @@ public class CaesarCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     int shift = context.getArgument("shift", Integer.class);
                                                     String encryptedText = encrypt(inputText, shift);
-                                                    context.getSource().sendFeedback(Text.of("Encrypted text: " + encryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Encrypted text: " + encryptedText));
                                                     return 1;
                                                 })
                                         )
@@ -32,7 +31,7 @@ public class CaesarCipherCommand {
                                                     String inputText = context.getArgument("text", String.class);
                                                     int shift = context.getArgument("shift", Integer.class);
                                                     String decryptedText = decrypt(inputText, shift);
-                                                    context.getSource().sendFeedback(Text.of("Decrypted text: " + decryptedText), false);
+                                                    context.getSource().sendMessage(Text.of("Decrypted text: " + decryptedText));
                                                     return 1;
                                                 })
                                         )

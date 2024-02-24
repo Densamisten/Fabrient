@@ -7,16 +7,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtString;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BookCommand {
 
@@ -49,7 +44,7 @@ public class BookCommand {
             NbtCompound bookTag = heldItem.getOrCreateNbt();
             bookTag.putString("raw_data", clipboardText);
 
-            context.getSource().sendFeedback(Text.literal("Clipboard contents written to the book!"), true);
+            context.getSource().sendMessage(Text.literal("Clipboard contents written to the book!"));
             return 1;
         } else {
             context.getSource().sendError(Text.literal("You need to hold a writable book in your hand!"));
@@ -66,7 +61,7 @@ public class BookCommand {
             if (bookTag != null && bookTag.contains("raw_data")) {
                 String rawData = bookTag.getString("raw_data");
                 clipboardManager.setClipboard(GLFW.glfwGetCurrentContext(), rawData);
-                context.getSource().sendFeedback(Text.literal("Clipboard contents read from the book!"), true);
+                context.getSource().sendMessage(Text.literal("Clipboard contents read from the book!"));
                 return 1;
             } else {
                 context.getSource().sendError(Text.literal("The book does not contain raw data!"));
