@@ -1,4 +1,4 @@
-package io.github.densamisten.util;
+package io.github.densamisten.mixin.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

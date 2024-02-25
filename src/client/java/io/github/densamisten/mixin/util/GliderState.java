@@ -1,4 +1,4 @@
-package io.github.densamisten.util;
+package io.github.densamisten.mixin.util;
 
 public enum GliderState {
     ONG,

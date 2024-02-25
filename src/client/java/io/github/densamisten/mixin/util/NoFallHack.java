@@ -5,7 +5,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package io.github.densamisten.util;
+package io.github.densamisten.mixin.util;
 
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.OnGroundOnly;
@@ -20,7 +20,7 @@ public final class NoFallHack
 				&& !isFallingFastEnoughToCauseDamage(player))
 			return;
 
-		player.networkHandler.method_2883(new OnGroundOnly(true));
+		player.networkHandler.sendPacket(new OnGroundOnly(true));
 	}
 
 	private boolean isFallingFastEnoughToCauseDamage(ClientPlayerEntity player)

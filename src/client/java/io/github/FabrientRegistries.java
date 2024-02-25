@@ -19,6 +19,5 @@ public static void registerCommands() {
     CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> VerboseSayCommand.register(dispatcher)));
     CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> CopyRawDataCommand.register(dispatcher)));
     CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> Hex2ImgCommand.register(dispatcher)));
-    CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> SocksCommand.register(dispatcher)));
     }
 }
